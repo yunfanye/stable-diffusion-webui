@@ -959,3 +959,19 @@ footer {
 [id*='_prompt_container'] > div {
 	margin: 0!important;
 }
+
+#inpaint_tab {
+    visibility: collapse;
+}
+
+#extras_tab {
+    visibility: collapse;
+}
+
+#footer {
+    visibility: collapse;
+}
+
+#img2img_tab {
+    visibility: collapse;
+}

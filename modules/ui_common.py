@@ -130,7 +130,7 @@ Requested path was: {f}
         generation_info = None
         with gr.Column():
             with gr.Row(elem_id=f"image_buttons_{tabname}"):
-                open_folder_button = gr.Button(folder_symbol, elem_id="hidden_element" if shared.cmd_opts.hide_ui_dir_config else f'open_folder_{tabname}')
+                open_folder_button = gr.Button(folder_symbol, elem_id="hidden_element" if shared.cmd_opts.hide_ui_dir_config else f'open_folder_{tabname}', visible=False)
 
                 if tabname != "extras":
                     save = gr.Button('Save', elem_id=f'save_{tabname}')
@@ -149,8 +149,8 @@ Requested path was: {f}
                     download_files = gr.File(None, file_count="multiple", interactive=False, show_label=False, visible=False, elem_id=f'download_files_{tabname}')
 
                 with gr.Group():
-                    html_info = gr.HTML(elem_id=f'html_info_{tabname}')
-                    html_log = gr.HTML(elem_id=f'html_log_{tabname}')
+                    html_info = gr.HTML(elem_id=f'html_info_{tabname}', visible=False)
+                    html_log = gr.HTML(elem_id=f'html_log_{tabname}', visible=False)
 
                     generation_info = gr.Textbox(visible=False, elem_id=f'generation_info_{tabname}')
                     if tabname == 'txt2img' or tabname == 'img2img':
