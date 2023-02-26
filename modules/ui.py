@@ -299,7 +299,11 @@ def create_toprow(is_img2img):
             with gr.Column(scale=1, elem_id="interrogate_col", visible=False):
                 button_interrogate = gr.Button('Interrogate\nCLIP', elem_id="interrogate", visible=False)
                 button_deepbooru = gr.Button('Interrogate\nDeepBooru', elem_id="deepbooru", visible=False)
-
+        
+        with gr.Column(elem_id=f"{id_part}_styles_row"):
+                prompt_styles = gr.Dropdown(label="Styles", elem_id=f"{id_part}_styles", choices=[k for k, v in shared.prompt_styles.styles.items()], value=[], multiselect=True, visible=True)
+                create_refresh_button(prompt_styles, shared.prompt_styles.reload, lambda: {"choices": [k for k, v in shared.prompt_styles.styles.items()]}, f"refresh_{id_part}_styles")
+        
         with gr.Column(scale=1, elem_id=f"{id_part}_actions_column"):
             with gr.Row(elem_id=f"{id_part}_generate_box"):
                 interrupt = gr.Button('Interrupt', elem_id=f"{id_part}_interrupt")
@@ -336,10 +340,6 @@ def create_toprow(is_img2img):
                     inputs=[prompt, negative_prompt],
                     outputs=[prompt, negative_prompt],
                 )
-
-            with gr.Row(elem_id=f"{id_part}_styles_row"):
-                prompt_styles = gr.Dropdown(label="Styles", elem_id=f"{id_part}_styles", choices=[k for k, v in shared.prompt_styles.styles.items()], value=[], multiselect=True, visible=False)
-                create_refresh_button(prompt_styles, shared.prompt_styles.reload, lambda: {"choices": [k for k, v in shared.prompt_styles.styles.items()]}, f"refresh_{id_part}_styles")
 
     return prompt, prompt_styles, negative_prompt, submit, button_interrogate, button_deepbooru, prompt_style_apply, save_style, paste, extra_networks_button, token_counter, token_button, negative_token_counter, negative_token_button
 
@@ -1566,11 +1566,14 @@ def create_ui():
     extensions_interface = ui_extensions.create_ui()
     # interfaces += [(extensions_interface, "Extensions", "extensions")]
 
-    with gr.Blocks(css=css, analytics_enabled=False, title="Stable Diffusion") as demo:
-        with gr.Row(elem_id="quicksettings", variant="compact"):
+    with gr.Blocks(css=css, analytics_enabled=False, title="Dreamind") as demo:
+        with gr.Row(elem_id="quicksettings", variant="compact", visible=False):
             for i, k, item in sorted(quicksettings_list, key=lambda x: quicksettings_names.get(x[1], x[0])):
                 component = create_setting_component(k, is_quicksettings=True)
                 component_dict[k] = component
+        
+        with gr.Row(elem_id="logo"):
+            gr.HTML(value="<img src='https://i.ibb.co/pjK6b0V/image.png' alt='logo' border='0' style='height:100px;'>")
 
         parameters_copypaste.connect_paste_params_buttons()
 
