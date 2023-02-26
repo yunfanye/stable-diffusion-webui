@@ -1573,7 +1573,7 @@ def create_ui():
                 component_dict[k] = component
         
         with gr.Row(elem_id="logo"):
-            gr.HTML(value="<img src='https://i.ibb.co/pjK6b0V/image.png' alt='logo' border='0' style='height:100px;'>")
+            gr.HTML(value="<img src='https://i.ibb.co/6Y12Wxv/logo.png' alt='logo' border='0' style='height:100px;'>")
 
         parameters_copypaste.connect_paste_params_buttons()
 
