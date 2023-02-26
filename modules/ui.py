@@ -286,7 +286,7 @@ def create_toprow(is_img2img):
             with gr.Row():
                 with gr.Column(scale=80):
                     with gr.Row():
-                        prompt = gr.Textbox(label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=2, placeholder="Prompt (press Ctrl+Enter or Alt+Enter to generate)")
+                        prompt = gr.Textbox(label="Prompt", elem_id=f"{id_part}_prompt", show_label=False, lines=2, placeholder=shared.cmd_opts.placeholder_prompt)
 
             with gr.Row(visible=False):
                 with gr.Column(scale=80):
@@ -1540,8 +1540,8 @@ def create_ui():
         )
 
     interfaces = [
-        (img2img_interface, "img2img", "img2img"),
         (txt2img_interface, "txt2img", "txt2img"),
+        (img2img_interface, "img2img", "img2img"),
     ]
 
     css = ""

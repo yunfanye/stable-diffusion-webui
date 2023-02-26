@@ -107,7 +107,7 @@ parser.add_argument("--server-name", type=str, help="Sets hostname of server", d
 parser.add_argument("--gradio-queue", action='store_true', help="Uses gradio queue; experimental option; breaks restart UI button")
 parser.add_argument("--skip-version-check", action='store_true', help="Do not check versions of torch and xformers")
 parser.add_argument("--no-hashing", action='store_true', help="disable sha256 hashing of checkpoints to help loading performance", default=False)
-
+parser.add_argument("--placeholder-prompt", type=str, default="Prompt", help="placerhold prompt",)
 
 script_loading.preload_extensions(extensions.extensions_dir, parser)
 script_loading.preload_extensions(extensions.extensions_builtin_dir, parser)
